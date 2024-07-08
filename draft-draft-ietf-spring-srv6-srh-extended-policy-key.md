@@ -2,22 +2,15 @@ title: "TODO - Your title"
 abbrev: "TODO - Abbreviation"
 category: info
 
-docname: draft-ietf-spring-srv6-srh-extended-policy-key
-submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
-number: 
-date:7 July 2024
-consensus: true
-v: 00
-area: AREA
-workgroup: SPRING Working Group
-keyword:
- - next generation
- - SRv6 Policy
- - Key
- - Controller
+docname: draft-ietf-spring-srv6-srh-extended-policy-key<br />
+date:7 July 2024 <br />
+consensus: true<br />
+v: 00<br />
+area: AREA<br />
+workgroup: SPRING Working Group<br />
 venue:
-  group: Spring
-  type: Working Group
+  group: Spring<br />
+  type: Working Group<br />
   mail: WG@example.com
   arch: https://example.com/WG
   github: USER/REPO
@@ -25,25 +18,21 @@ venue:
 
 author:
  -
-    fullname: Jing Zhao
+    fullname: J. Zhao
     organization: China Unicom
     email: zhaoj501@chinaunicom.cn
 
-    fullname: Wenxiang Lve
+    fullname: W.X. Lve
     organization: China Unicom
     email: lvwx28@chinaunicom.cn
 
-normative:
 
-informative:
 
 
 --- abstract
 
 This paper defines a new extension header-SRv6 Policy Key to address the problems of timeliness and accuracy of controller-aware paths in SR-MPLS and SRv6 networks.The scheme enables network nodes to report path information to the controller by adding a path unique identifier to the message header, which ensures that the controller has a real-time and accurate picture of the SR path status, even if the SL tag is lost in transmission or the controller is unable to monitor it directly.This approach aims to optimise the network management efficiency and intelligent decision-making capability of SDN, especially in multipath tunnel configuration and load balancing scenarios, to improve network availability and O&M efficiency.
 
-
---- middle
 
 # Introduction
 
@@ -114,11 +103,14 @@ Endpoint，128bit，destination address of SRv6 Policy..
 
 
 # Use Cases for SRv6 Policy KEY
+## Case 1:The controller cannot sense it in real time
 SRv6 Policy Key addresses the challenges faced by controllers in real-time sensing of actual paths by providing unique identifiers for paths:
-    Actual path speculation is limited by path information sensing delay: facing the problem of network state sensing delay, especially the 1-minute delay in link state update and the need for secondary verification of initial detection errors, as well as the problem of untimely updating of network device configurations, the SRv6 Policy Key strengthens the controller's real-time path identification capability by providing a unique identifier for paths, effectively alleviating the challenge of relying on instantaneous information for path decision-making. path decision-making, ensuring the accuracy and efficiency of network control. This is reflected in two scenarios:
-        In the design of architectures with triple redundant tunnels, seamless switchover between master and standby requires precise path awareness of each path state to maintain service continuity.
-        Under the single-tunnel multipath policy, traffic is flexibly allocated based on link status and priority, requiring accurate path awareness for efficient traffic management and optimisation.
-    The actual path cannot be inferred: In complex network load sharing scenarios, a single path is divided into three parallel sub-paths to jointly carry traffic, and its allocation is randomly executed by devices based on specific hash rules. Although this mechanism improves bandwidth utilisation, there is the problem of not being able to infer the actual path, which brings challenges to O&M management and fault troubleshooting. The controller can obtain real-time paths through the SRv6 Policy Key, overcoming the unpredictability of paths caused by the original random allocation.
+Actual path speculation is limited by path information sensing delay: facing the problem of network state sensing delay, especially the 1-minute delay in link state update and the need for secondary verification of initial detection errors, as well as the problem of untimely updating of network device configurations, the SRv6 Policy Key strengthens the controller's real-time path identification capability by providing a unique identifier for paths, effectively alleviating the challenge of relying on instantaneous information for path decision-making. path decision-making, ensuring the accuracy and efficiency of network control. <br />
+This is reflected in two scenarios:<br />
+--In the design of architectures with triple redundant tunnels, seamless switchover between master and standby requires precise path awareness of each path state to maintain service continuity.<br />
+--Under the single-tunnel multipath policy, traffic is flexibly allocated based on link status and priority, requiring accurate path awareness for efficient traffic management and optimisation.
+## Case 2:The controller cannot sense it in real time
+In complex network load sharing scenarios, a single path is divided into three parallel sub-paths to jointly carry traffic, and its allocation is randomly executed by devices based on specific hash rules. Although this mechanism improves bandwidth utilisation, there is the problem of not being able to infer the actual path, which brings challenges to O&M management and fault troubleshooting. The controller can obtain real-time paths through the SRv6 Policy Key, overcoming the unpredictability of paths caused by the original random allocation.
 
 
 # Functional Description
